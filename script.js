@@ -53,16 +53,16 @@ function displayCards(plants) {
         const card = document.createElement('div');
         card.className = 'border rounded-lg overflow-hidden shadow-sm';
         card.innerHTML = `
-      <img src="${plant.image}" alt="${plant.name || plant.plant_name}" class="w-full h-40 object-cover">
+      <img src="${plant.image}" alt="${plant.name || plant.name}" class="w-full h-40 object-cover">
       <div class="p-3">
        <h4 class="font-bold text-gray-800 cursor-pointer hover:text-green-700" 
-    onclick="loadPlantDetail('${plant.id}')">${plant.name || plant.name || plant.plant_name}</h4>
-        <p class="text-gray-500 text-sm mt-1">${plant.short_description || ''}</p>
+    onclick="loadPlantDetail('${plant.id}')">${plant.name || plant.name || plant.name}</h4>
+        <p class="text-gray-500 text-sm mt-1">${plant.description || ''}</p>
         <div class="flex justify-between items-center mt-2">
           <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded">${plant.category || ''}</span>
           <span class="font-bold text-gray-700">৳${plant.price}</span>
         </div>
-        <button onclick="addToCart('${plant.name || plant.name || plant.plant_name}', ${plant.price})"
+        <button onclick="addToCart('${plant.name || plant.name || plant.name}', ${plant.price})"
           class="mt-2 w-full bg-green-700 text-white py-1 rounded hover:bg-green-600">
           Add to Cart
         </button>
@@ -125,12 +125,13 @@ function removeFromCart(index) {
 async function loadPlantDetail(id) {
     const res = await fetch(`https://openapi.programming-hero.com/api/plant/${id}`);
     const data = await res.json();
-    const plant = data.plant;
+    console.log('Plant detail:', data);
+    const plant = data.plants || data.plant || data.data || data;
 
     document.getElementById('modal-content').innerHTML = `
-    <img src="${plant.image}" alt="${plant.name || plant.plant_name}" class="w-full h-48 object-cover rounded mb-4">
-    <h2 class="text-xl font-bold text-gray-800 mb-2">${plant.name || plant.plant_name}</h2>
-    <p class="text-gray-600 text-sm mb-2">${plant.short_description || ''}</p>
+    <img src="${plant.image}" alt="${plant.name}" class="w-full h-48 object-cover rounded mb-4">
+    <h2 class="text-xl font-bold text-gray-800 mb-2">${plant.name}</h2>
+    <p class="text-gray-600 text-sm mb-2">${plant.description || ''}</p>
     <p class="text-gray-700"><strong>Category:</strong> ${plant.category || ''}</p>
     <p class="text-gray-700"><strong>Price:</strong> ৳${plant.price}</p>
     <p class="text-gray-700 mt-2">${plant.long_description || ''}</p>
