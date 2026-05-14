@@ -3,8 +3,7 @@
 A tree plantation website built with HTML, Tailwind CSS, and Vanilla JavaScript.
 
 ## 🔗 Live Link
-[Live Site](YOUR_DEPLOYED_URL_HERE)
-
+[Live Site](https://spectacular-creponne-728118.netlify.app/)
 ## 📁 GitHub Repository
 [GitHub Repo](https://github.com/ruksat13/B12A06-Green-Earth-main)
 
